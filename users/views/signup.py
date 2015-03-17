@@ -59,7 +59,7 @@ def edit(request):
 
   params['form'] = form
   params['user'] = user
-
+##added here
   return dmp_render_to_response(request, 'signup.edit.html', params)
 
 ######################################################
