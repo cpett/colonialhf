@@ -1,0 +1,48 @@
+<%inherit file="/homepage/templates/base.htm" />
+
+<%block name="header">
+    <div class="header">
+
+    </div>
+</%block>
+
+
+
+<%block name="content">
+    <div class="content">
+      <h2 class="manage">Order Management</h2>
+      <div class="text-right">
+        <a href="/inventory/order.create/" class="btn btn-primary">Create New order</a>
+      </div>
+      <br>
+      <table id="users_table" class="table table-striped table-bordered">
+          <tr>
+          <th>ID</th>
+          <th>Order Date</th>
+          <th>Phone</th>
+          <th>Date Picked</th>
+          <th>Date Paid</th>
+          <th>Date Shipped</th>
+          <th>Tracking Number</th>
+        </tr>
+          %for order in orders:
+            <tr>
+              <td>${ order.id } </td>
+              <td>${ order.order_date } </td>
+              <td>${ order.phone } </td>
+              <td>${ order.date_picked } </td>
+              <td>${ order.date_shipped } </td>
+              <td>${ order.tracking_number } </td>
+              <td>
+                <a href="/inventory/order.edit/${ order.id }/" class="btn btn-success">Edit</a>
+              </td>
+            </tr>
+          %endfor
+      </table>
+
+</%block>
+
+<%block name="footer">
+    <div class="footer">
+    </div>
+</%block>

@@ -1,0 +1,80 @@
+<%inherit file="/homepage/templates/base.htm" />
+
+<%block name="header">
+    <div class="header">
+
+    </div>
+</%block>
+
+<%block name="left">
+    <div class="left-menu">
+    	<h2 class="managenav">Manage</h2>
+    	<ul>
+    	<li class="menu-nav"><a href="event">Events</a></li>
+        <li class="menu-nav"><a href="inventory">Inventory</a></li>
+        <li class="menu-nav"><a href="area">Areas</a></li>
+        <li class="menu-nav"><a href="users">Users</a></li>
+        <li class="menu-nav"><a href="MyAccount">My Account</a></li>
+    	</ul>
+    </div>
+</%block>
+
+<%block name="content">
+    <div class="content">
+      <h2 class="manage">My Account</h2>
+            <div class="row">
+              <div class="col-md-4">
+                    <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label editform">First Name</label>
+                      <p>Josh</p>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label editform">Last Name</label>
+                      <p>Haws</p>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label editform">Email Address</label>
+                      <p>joshhaws@colonialheritage.org</p>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label editform">Password</label>
+                      <p>****</p>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                    <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label editform">Street Address</label>
+                      <p>99 s 600 e</p>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label editform">City</label>
+                      <p>Provo</p>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label editform">Zip</label>
+                      <p>84606</p>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label editform">Country</label>
+                      <p>United States</p>
+                  </div>
+
+              </div>
+              <div class="col-md-4">
+              <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label editform">Security Question</label>
+                      <p>First Pet Name?</p>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label editform">Answer</label>
+                      <p>Spikey</p>
+                  </div>
+              </div>
+            </div>
+            <form action="AccountChanges"><button type="submit" class="btn btn-primary left">Edit Account</button></form>
+</%block>
+
+<%block name="footer">
+    <div class="footer">
+    </div>
+</%block>

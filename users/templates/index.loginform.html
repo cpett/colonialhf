@@ -1,0 +1,36 @@
+<%inherit file="/homepage/templates/base_ajax.htm" />
+
+<%block name="header">
+  <div class="header">
+
+  </div>
+</%block>
+
+<%block name="top">
+  <div class="row top-header">
+      <div class="col-md-10 top-header"></div>
+      <div class="col-md-1 top-header"><a href="/homepage/login/" class="top-nav">Login</a></div>
+      <div class="col-md-1 top-header"><a href="SignUp" class="top-nav">Sign Up</a></div>
+  </div>
+</%block>
+
+<%block name="left">
+  <div class="left">
+
+  </div>
+</%block>
+
+<%block name="content">
+
+  <div class="content" align="center">
+      <form id="loginform" method="POST" action="/users/index.loginform">
+        <table>
+          ${ form }
+        </table>
+        <br>
+        <button type="submit" id="login_button" class="btn btn-primary">Submit</button>
+      </form>
+  </div>
+
+</%block>
+

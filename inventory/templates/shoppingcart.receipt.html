@@ -1,0 +1,25 @@
+<%inherit file="/homepage/templates/base.htm" />
+<%! import homepage.models as hmod %>
+
+<%block name="content">
+    <div class="content">
+    <table class="table table-striped table-bordered"
+    <tr>
+    
+    </tr>
+      <% total_price = 0 %>
+      %for item in shopping_cart:
+        <% qty = shopping_cart.get(item) %>
+        <% product = hmod.Product.objects.get(id=item) %>
+
+          <% total_price += product.current_price * qty %>
+      %endfor
+      </table>
+      <div class="row">
+        <div class="col-md-9" align="center">
+          <h3>Thank you for making a purchase.  Your payment of ${ total_price } will be processed shortly.<h3>
+          <a href="/homepage/index/" align="center" class="btn btn-primary">Back</a>
+        </div>
+      </div>
+    </div>
+</%block>

@@ -1,0 +1,31 @@
+<%inherit file="/homepage/templates/base.htm" />
+
+<%block name="header">
+    <div class="header">
+
+    </div>
+</%block>
+
+<%block name="top">
+  <div class="row top-header">
+
+  </div>
+</%block>
+
+<%block name="content">
+    <div class="content">
+      <form method="POST">
+        <table>
+          ${ form }
+        </table>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="/users/users.delete/${ user.id }" class="btn btn-danger">Delete Account</a>
+      </form>
+    </div>
+</%block>
+
+<%block name="footer">
+    <div class="footer">
+    </div>
+</%block>
