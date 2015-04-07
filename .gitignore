@@ -1,2 +1,5 @@
 **__pycache__
-**__chached_templates
+**__cached_templates
+colonialHF/settings.py
+colonialHF.wsgi.py
+colonialHF.urls.py
