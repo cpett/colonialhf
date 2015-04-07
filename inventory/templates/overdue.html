@@ -1,0 +1,91 @@
+<%inherit file="/homepage/templates/base.htm" />
+
+<%block name="header">
+    <div class="header">
+
+    </div>
+</%block>
+
+<%block name="content">
+    <div class="content">
+      <h2 class="manage">Overdue Items</h2>
+      <br>
+      <div class="text-right">
+      <a href="/inventory/return/" class="btn btn-primary">Back to Rentals</a>
+      <a href="/inventory/overdue.email/" class="btn btn-primary">Send Email</a>
+      </div>
+      <br/>
+      Batch30
+      <table id="users_table" class="table table-striped table-bordered">
+          <tr>
+          <th>Username</th>
+          <th>Item</th>
+          <th>Rental Time</th>
+          <th>Due Date</th>
+          <th>Actions</th>
+        </tr>
+
+          %for item in Batch30: 
+            <tr>
+              <td>${ item.userid.username } </td>
+              <td>${ item.itemid.name } </td>
+              <td>${ item.rental_time } </td>
+              <td>${ item.due_date } </td>
+              <td>
+                <a href="/inventory/return.details/${ item.id }" class="btn btn-success">Process</a>
+              </td>
+            </tr>
+          %endfor
+      </table>
+      <br/>
+      Batch60
+      <table id="users_table" class="table table-striped table-bordered">
+          <tr>
+          <th>Username</th>
+          <th>Item</th>
+          <th>Rental Time</th>
+          <th>Due Date</th>
+          <th>Actions</th>
+        </tr>
+
+          %for item in Batch60: 
+            <tr>
+              <td>${ item.userid.username } </td>
+              <td>${ item.itemid.name } </td>
+              <td>${ item.rental_time } </td>
+              <td>${ item.due_date } </td>
+              <td>
+                <a href="/inventory/return.details/${ item.id }" class="btn btn-success">Process</a>
+              </td>
+            </tr>
+          %endfor
+      </table>
+      <br/>
+      Batch90
+      <table id="users_table" class="table table-striped table-bordered">
+          <tr>
+          <th>Username</th>
+          <th>Item</th>
+          <th>Rental Time</th>
+          <th>Due Date</th>
+          <th>Actions</th>
+        </tr>
+
+          %for item in Batch90: 
+            <tr>
+              <td>${ item.userid.username } </td>
+              <td>${ item.itemid.name } </td>
+              <td>${ item.rental_time } </td>
+              <td>${ item.due_date } </td>
+              <td>
+                <a href="/inventory/return.details/${ item.id }" class="btn btn-success">Process</a>
+              </td>
+            </tr>
+          %endfor
+      </table>
+</%block>
+
+<%block name="footer">
+    <div class="footer">
+    </div>
+</%block>
