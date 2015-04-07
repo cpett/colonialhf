@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1426563467.830434
+_modified_time = 1426634466.005539
 _enable_loop = True
 _template_filename = 'C:\\Python34\\Lib\\site-packages\\django\\bin\\colonialHF\\users\\templates/signup.edit.html'
 _template_uri = 'signup.edit.html'
 _source_encoding = 'ascii'
 import os, os.path, re
-_exports = ['content', 'header', 'left', 'top']
+_exports = ['left', 'header', 'top', 'content']
 
 
 def _mako_get_namespace(context, name):
@@ -28,15 +28,15 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
+        user = context.get('user', UNDEFINED)
+        def left():
+            return render_left(context._locals(__M_locals))
+        def top():
+            return render_top(context._locals(__M_locals))
         def content():
             return render_content(context._locals(__M_locals))
         def header():
             return render_header(context._locals(__M_locals))
-        user = context.get('user', UNDEFINED)
-        def top():
-            return render_top(context._locals(__M_locals))
-        def left():
-            return render_left(context._locals(__M_locals))
         form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n\r\n')
@@ -65,6 +65,42 @@ def render_body(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
+def render_left(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def left():
+            return render_left(context)
+        __M_writer = context.writer()
+        __M_writer('\r\n  <div>\r\n\r\n  </div>\r\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_header(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def header():
+            return render_header(context)
+        __M_writer = context.writer()
+        __M_writer('\r\n  <div class="header">\r\n\r\n  </div>\r\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_top(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def top():
+            return render_top(context)
+        __M_writer = context.writer()
+        __M_writer('\r\n  <div class="row top-header">\r\n\r\n  </div>\r\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
@@ -83,44 +119,8 @@ def render_content(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
-def render_header(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def header():
-            return render_header(context)
-        __M_writer = context.writer()
-        __M_writer('\r\n  <div class="header">\r\n\r\n  </div>\r\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_left(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def left():
-            return render_left(context)
-        __M_writer = context.writer()
-        __M_writer('\r\n  <div>\r\n\r\n  </div>\r\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_top(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def top():
-            return render_top(context)
-        __M_writer = context.writer()
-        __M_writer('\r\n  <div class="row top-header">\r\n\r\n  </div>\r\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
 """
 __M_BEGIN_METADATA
-{"uri": "signup.edit.html", "line_map": {"116": 9, "98": 15, "68": 21, "104": 15, "47": 7, "42": 1, "76": 21, "77": 25, "78": 25, "79": 29, "80": 29, "52": 13, "110": 9, "86": 3, "57": 19, "122": 116, "27": 0, "92": 3, "62": 32}, "source_encoding": "ascii", "filename": "C:\\Python34\\Lib\\site-packages\\django\\bin\\colonialHF\\users\\templates/signup.edit.html"}
+{"source_encoding": "ascii", "line_map": {"112": 21, "98": 9, "68": 15, "116": 29, "104": 21, "42": 1, "47": 7, "80": 3, "113": 25, "114": 25, "115": 29, "52": 13, "86": 3, "57": 19, "122": 116, "27": 0, "92": 9, "74": 15, "62": 32}, "filename": "C:\\Python34\\Lib\\site-packages\\django\\bin\\colonialHF\\users\\templates/signup.edit.html", "uri": "signup.edit.html"}
 __M_END_METADATA
 """

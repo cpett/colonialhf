@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1425773603.132907
+_modified_time = 1428007506.856032
 _enable_loop = True
 _template_filename = 'C:\\Python34\\Lib\\site-packages\\django\\bin\\colonialHF\\inventory\\templates/shoppingcart.review.html'
 _template_uri = 'shoppingcart.review.html'
@@ -30,9 +30,10 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
+        shopping_cart1 = context.get('shopping_cart1', UNDEFINED)
+        shopping_cart0 = context.get('shopping_cart0', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
-        shopping_cart = context.get('shopping_cart', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n')
         __M_writer('\r\n\r\n')
@@ -49,36 +50,66 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        shopping_cart1 = context.get('shopping_cart1', UNDEFINED)
+        shopping_cart0 = context.get('shopping_cart0', UNDEFINED)
         def content():
             return render_content(context)
-        shopping_cart = context.get('shopping_cart', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\r\n    <div class="target col-md-10">\r\n    <h2>Review Cart</h2>\r\n    <table class="table table-striped table-bordered"\r\n    <tr>\r\n      <th>Name</th>\r\n      <th>Quantity</th>\r\n      <th>Total Price</th>\r\n      <th>Remove</th>\r\n    </tr>\r\n      ')
+        __M_writer('\r\n    <div class="target col-md-10">\r\n    <h2>Review Cart</h2>\r\n    ')
         total_price = 0 
         
         __M_writer('\r\n')
-        for item in shopping_cart:
-            __M_writer('        ')
-            qty = shopping_cart.get(item) 
-            
-            __M_writer('\r\n        ')
-            product = hmod.Product.objects.get(id=item) 
-            
-            __M_writer('\r\n        <tr>\r\n            <td>')
-            __M_writer(str( product.name ))
-            __M_writer('</td>\r\n            <td>')
-            __M_writer(str( qty ))
-            __M_writer('</td>\r\n            <td>')
-            __M_writer(str( product.current_price * qty ))
-            __M_writer('</td>\r\n            <td><button id="btn_remove" data-id="')
-            __M_writer(str( item ))
-            __M_writer('" class="remove btn btn-danger">X</button></td>\r\n        </tr>\r\n          ')
-            total_price += product.current_price * qty 
-            
-            __M_writer('\r\n')
-        __M_writer('      </table>\r\n      <div class="row">\r\n        <div class="col-md-9">\r\n          <p><strong>Total Price: ')
+        if shopping_cart0:
+            __M_writer('      Products\r\n      <table class="table table-striped table-bordered"\r\n      <tr>\r\n        <th>Name</th>\r\n        <th>Quantity</th>\r\n        <th>Unit Price</th>\r\n        <th>Total Price</th>\r\n        <th>Remove</th>\r\n      </tr>\r\n\r\n')
+            for item in shopping_cart0:
+                __M_writer('              ')
+                qty = shopping_cart0.get(item) 
+                
+                __M_writer('\r\n              ')
+                product = hmod.Product.objects.get(id=item) 
+                
+                __M_writer('\r\n              <tr>\r\n                  <td>')
+                __M_writer(str( product.name ))
+                __M_writer('</td>\r\n                  <td>')
+                __M_writer(str( qty ))
+                __M_writer('</td>\r\n                  <td>')
+                __M_writer(str( product.current_price ))
+                __M_writer('</td>\r\n                  <td>')
+                __M_writer(str( product.current_price * qty ))
+                __M_writer('</td>\r\n                  <td><button id="btn_remove" data-id="')
+                __M_writer(str( item ))
+                __M_writer('" data-type="0" class="remove btn btn-danger">X</button></td>\r\n              </tr>\r\n                ')
+                total_price += product.current_price * qty 
+                
+                __M_writer(' \r\n')
+            __M_writer('          </table>\r\n')
+        if shopping_cart1:
+            __M_writer('          Rentals\r\n          <table class="table table-striped table-bordered"\r\n          <tr>\r\n            <th>Name</th>\r\n            <th>Quantity</th>\r\n            <th>Unit Price</th>\r\n            <th>Total Price</th>\r\n            <th>Remove</th>\r\n          </tr>\r\n')
+            for item in shopping_cart1:
+                __M_writer('                ')
+                qty = shopping_cart1.get(item) 
+                
+                __M_writer('\r\n                ')
+                product = hmod.Item.objects.get(id=item) 
+                
+                __M_writer('\r\n                <tr>\r\n                    <td>')
+                __M_writer(str( product.name ))
+                __M_writer('</td>\r\n                    <td>')
+                __M_writer(str( qty ))
+                __M_writer('</td>\r\n                    <td>')
+                __M_writer(str( product.standard_rental_price ))
+                __M_writer('</td>\r\n                    <td>')
+                __M_writer(str( product.standard_rental_price * qty ))
+                __M_writer('</td>\r\n                    <td><button id="btn_remove" data-id="')
+                __M_writer(str( item ))
+                __M_writer('" data-type="1" class="remove btn btn-danger">X</button></td>\r\n                </tr>\r\n                  ')
+                total_price += product.standard_rental_price * qty 
+                
+                __M_writer(' \r\n')
+            __M_writer('            </table>\r\n')
+        __M_writer('      <div class="row">\r\n        <div class="col-md-9">\r\n          <h3>Total Price: ')
         __M_writer(str( total_price ))
-        __M_writer('</strong></p>\r\n        </div>\r\n        <div class="col-md-3">\r\n          <button id="cart_login_dialog" class="btn btn-warning pull-right">Check Out</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n')
+        __M_writer('</h3>\r\n        </div>\r\n        <div class="col-md-3">\r\n          <button id="cart_login_dialog" class="btn btn-warning pull-right">Check Out</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -86,6 +117,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"line_map": {"64": 16, "65": 17, "67": 17, "68": 19, "69": 19, "70": 20, "71": 20, "72": 21, "73": 21, "74": 22, "75": 22, "76": 24, "78": 24, "79": 26, "16": 2, "81": 29, "87": 81, "29": 0, "80": 29, "37": 1, "38": 2, "43": 36, "49": 4, "56": 4, "57": 14, "59": 14, "60": 15, "61": 16, "62": 16}, "uri": "shoppingcart.review.html", "source_encoding": "ascii", "filename": "C:\\Python34\\Lib\\site-packages\\django\\bin\\colonialHF\\inventory\\templates/shoppingcart.review.html"}
+{"source_encoding": "ascii", "uri": "shoppingcart.review.html", "filename": "C:\\Python34\\Lib\\site-packages\\django\\bin\\colonialHF\\inventory\\templates/shoppingcart.review.html", "line_map": {"16": 2, "29": 0, "38": 1, "39": 2, "44": 66, "50": 4, "58": 4, "59": 7, "61": 7, "62": 8, "63": 9, "64": 19, "65": 20, "66": 20, "68": 20, "69": 21, "71": 21, "72": 23, "73": 23, "74": 24, "75": 24, "76": 25, "77": 25, "78": 26, "79": 26, "80": 27, "81": 27, "82": 29, "84": 29, "85": 31, "86": 33, "87": 34, "88": 43, "89": 44, "90": 44, "92": 44, "93": 45, "95": 45, "96": 47, "97": 47, "98": 48, "99": 48, "100": 49, "101": 49, "102": 50, "103": 50, "104": 51, "105": 51, "106": 53, "108": 53, "109": 55, "110": 57, "111": 59, "112": 59, "118": 112}}
 __M_END_METADATA
 """

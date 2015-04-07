@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1425755124.147553
+_modified_time = 1428015916.824017
 _enable_loop = True
 _template_filename = 'C:\\Python34\\Lib\\site-packages\\django\\bin\\colonialHF\\inventory\\templates/shoppingcart.receipt.html'
 _template_uri = 'shoppingcart.receipt.html'
@@ -32,7 +32,8 @@ def render_body(context,**pageargs):
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         def content():
             return render_content(context._locals(__M_locals))
-        shopping_cart = context.get('shopping_cart', UNDEFINED)
+        shopping_cart0 = context.get('shopping_cart0', UNDEFINED)
+        shopping_cart1 = context.get('shopping_cart1', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n')
         __M_writer('\r\n\r\n')
@@ -51,23 +52,37 @@ def render_content(context,**pageargs):
     try:
         def content():
             return render_content(context)
-        shopping_cart = context.get('shopping_cart', UNDEFINED)
+        shopping_cart0 = context.get('shopping_cart0', UNDEFINED)
+        shopping_cart1 = context.get('shopping_cart1', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\r\n    <div class="content">\r\n    <table class="table table-striped table-bordered"\r\n    <tr>\r\n    \r\n    </tr>\r\n      ')
+        __M_writer('\r\n    <div class="content">\r\n    <table class="table table-striped table-bordered"\r\n    <tr>\r\n    \r\n    </tr>\r\n       ')
         total_price = 0 
         
         __M_writer('\r\n')
-        for item in shopping_cart:
-            __M_writer('        ')
-            qty = shopping_cart.get(item) 
-            
-            __M_writer('\r\n        ')
-            product = hmod.Product.objects.get(id=item) 
-            
-            __M_writer('\r\n\r\n          ')
-            total_price += product.current_price * qty 
-            
-            __M_writer('\r\n')
+        if shopping_cart0:
+            for item in shopping_cart0:
+                __M_writer('          ')
+                qty = shopping_cart0.get(item) 
+                
+                __M_writer('\r\n          ')
+                product = hmod.Product.objects.get(id=item) 
+                
+                __M_writer('\r\n          ')
+                total_price += product.current_price * qty 
+                
+                __M_writer('\r\n')
+        if shopping_cart1:
+            for item in shopping_cart1:
+                __M_writer('          ')
+                qty = shopping_cart1.get(item) 
+                
+                __M_writer('\r\n          ')
+                product = hmod.Item.objects.get(id=item) 
+                
+                __M_writer('\r\n          ')
+                total_price += product.standard_rental_price * qty 
+                
+                __M_writer('\r\n')
         __M_writer('      </table>\r\n      <div class="row">\r\n        <div class="col-md-9" align="center">\r\n          <h3>Thank you for making a purchase.  Your payment of ')
         __M_writer(str( total_price ))
         __M_writer(' will be processed shortly.<h3>\r\n          <a href="/homepage/index/" align="center" class="btn btn-primary">Back</a>\r\n        </div>\r\n      </div>\r\n    </div>\r\n')
@@ -78,6 +93,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"source_encoding": "ascii", "filename": "C:\\Python34\\Lib\\site-packages\\django\\bin\\colonialHF\\inventory\\templates/shoppingcart.receipt.html", "line_map": {"64": 12, "65": 13, "67": 13, "68": 15, "37": 1, "38": 2, "71": 17, "72": 20, "73": 20, "79": 73, "43": 25, "70": 15, "61": 12, "16": 2, "49": 4, "56": 4, "57": 10, "59": 10, "60": 11, "29": 0, "62": 12}, "uri": "shoppingcart.receipt.html"}
+{"line_map": {"64": 13, "65": 13, "67": 13, "68": 14, "70": 14, "71": 15, "73": 15, "74": 18, "75": 19, "76": 20, "77": 20, "79": 20, "16": 2, "82": 21, "83": 22, "85": 22, "86": 25, "87": 28, "88": 28, "29": 0, "94": 88, "80": 21, "38": 1, "39": 2, "44": 33, "50": 4, "58": 4, "59": 10, "61": 10, "62": 11, "63": 12}, "source_encoding": "ascii", "uri": "shoppingcart.receipt.html", "filename": "C:\\Python34\\Lib\\site-packages\\django\\bin\\colonialHF\\inventory\\templates/shoppingcart.receipt.html"}
 __M_END_METADATA
 """

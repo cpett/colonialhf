@@ -4,10 +4,10 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1427991321.007409
+_modified_time = 1427991073.800734
 _enable_loop = True
-_template_filename = 'C:\\Python34\\Lib\\site-packages\\django\\bin\\colonialHF\\inventory\\templates/store.html'
-_template_uri = 'store.html'
+_template_filename = 'C:\\Python34\\Lib\\site-packages\\django\\bin\\colonialHF\\inventory\\templates/store.rentals.html'
+_template_uri = 'store.rentals.html'
 _source_encoding = 'ascii'
 import os, os.path, re
 _exports = ['content', 'footer', 'header']
@@ -30,12 +30,12 @@ def render_body(context,**pageargs):
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         def content():
             return render_content(context._locals(__M_locals))
-        products = context.get('products', UNDEFINED)
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
-        def footer():
-            return render_footer(context._locals(__M_locals))
         def header():
             return render_header(context._locals(__M_locals))
+        def footer():
+            return render_footer(context._locals(__M_locals))
+        items = context.get('items', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'header'):
@@ -63,19 +63,19 @@ def render_content(context,**pageargs):
     try:
         def content():
             return render_content(context)
-        products = context.get('products', UNDEFINED)
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        items = context.get('items', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\r\n    <div class="content">\r\n      <h2 class="manage">Colonial Heritage Online Store</h2>\r\n      <input type="text" id="search_input">\r\n      <button id="search_button" class="btn btn-primary">Search</button>\r\n      <a href="/inventory/rentals/" class="btn btn-warning">Rentals</a>\r\n      <div class="text-right">\r\n      </div>\r\n      <br>\r\n      <div class="col-md-8">\r\n        <table id="users_table" class="table table-striped table-bordered">\r\n            <tr>\r\n            <th>Product</th>\r\n            <th>Name</th>\r\n            <th/>\r\n          </tr>\r\n')
-        for product in products:
+        __M_writer('\r\n    <div class="content">\r\n      <h2 class="manage">Colonial Heritage Online Store</h2>\r\n      <input type="text" id="search_input">\r\n      <button id="search_button" class="btn btn-primary">Search</button>\r\n      <a href="/inventory/store/" class="btn btn-warning">Products</a>\r\n      <div class="text-right">\r\n      </div>\r\n      <br>\r\n      <div class="col-md-8">\r\n        <table id="users_table" class="table table-striped table-bordered">\r\n            <tr>\r\n            <th>Product</th>\r\n            <th>Name</th>\r\n            <th/>\r\n          </tr>\r\n')
+        for item in items:
             __M_writer('              <tr>\r\n                <td><img src="')
             __M_writer(str( STATIC_URL ))
-            __M_writer('inventory/media/products/')
-            __M_writer(str( product.id ))
+            __M_writer('inventory/media/rentals/')
+            __M_writer(str( item.id ))
             __M_writer('.jpg"/></td>\r\n                <td class="product_name">')
-            __M_writer(str( product.name ))
+            __M_writer(str( item.name ))
             __M_writer('</td>\r\n                <td>\r\n                  <a href="/inventory/store.details/')
-            __M_writer(str( product.id ))
+            __M_writer(str( item.id ))
             __M_writer('/" class="btn btn-primary">Details</a>\r\n                </td>\r\n                <td>\r\n                  \r\n                </td>\r\n              </tr>\r\n')
         __M_writer('        </table>\r\n      </div>\r\n\r\n')
         return ''
@@ -109,6 +109,6 @@ def render_header(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"source_encoding": "ascii", "filename": "C:\\Python34\\Lib\\site-packages\\django\\bin\\colonialHF\\inventory\\templates/store.html", "uri": "store.html", "line_map": {"69": 9, "70": 25, "71": 26, "72": 27, "73": 27, "74": 27, "75": 27, "76": 28, "77": 28, "78": 30, "79": 30, "80": 37, "86": 42, "27": 0, "92": 42, "98": 3, "40": 1, "45": 7, "110": 104, "104": 3, "50": 40, "55": 45, "61": 9}}
+{"uri": "store.rentals.html", "line_map": {"69": 9, "70": 25, "71": 26, "72": 27, "73": 27, "74": 27, "75": 27, "76": 28, "77": 28, "78": 30, "79": 30, "80": 37, "86": 42, "27": 0, "92": 42, "98": 3, "40": 1, "45": 7, "110": 104, "104": 3, "50": 40, "55": 45, "61": 9}, "source_encoding": "ascii", "filename": "C:\\Python34\\Lib\\site-packages\\django\\bin\\colonialHF\\inventory\\templates/store.rentals.html"}
 __M_END_METADATA
 """
