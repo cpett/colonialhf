@@ -96,3 +96,26 @@ def delete(request):
     return HttpResponseRedirect('/events/event/')
   event.delete()
   return HttpResponseRedirect('/events/event/')
+
+######################################################
+###  Shows the list of events
+@view_function
+def view(request):
+  params = {}
+
+  events = hmod.Event.objects.all().order_by('start_date')
+
+  params['events'] = events
+
+  return templater.render_to_response(request, 'event.view.html', params)
+
+@view_function
+def details(request):
+  params = {}
+
+  events = hmod.Event.objects.all().filter(id=request.urlparams[0])
+  products = hmod.Product.objects.all()
+
+  params['events'] = events
+  params['products'] = products
+  return templater.render_to_response(request, 'event.details.html', params)
