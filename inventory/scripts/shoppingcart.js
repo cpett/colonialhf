@@ -2,11 +2,10 @@ $(function() {
 
 	$('.remove').on('click', function() {
 		var id = $(this).attr('data-id')
-
-		console.log(id)
+		var ptype = $(this).attr('data-type')
 
 		$.ajax({
-			url: '/inventory/shoppingcart.removeitem/' + id,
+			url: '/inventory/shoppingcart.remove/' + id + '/' + ptype,
 			type: 'POST',
 			success: function(data) {
 				$('.target').html(data)

@@ -13,6 +13,8 @@ from django.contrib.auth.models import Group, Permission, ContentType
 from django.contrib.auth import authenticate, login
 from .. import dmp_render, dmp_render_to_response
 from django.contrib.auth.decorators import login_required
+import requests
+from django.core.mail import send_mail
 
 templater = get_renderer('inventory')
 
@@ -22,11 +24,15 @@ templater = get_renderer('inventory')
 def process_request(request):
   params = {}
 
-  if 'shopping_cart' not in request.session:
-    request.session['shopping_cart'] = {}
+  if 'shopping_cart0' not in request.session:
+    request.session['shopping_cart0'] = {}
+  if 'shopping_cart1' not in request.session:
+    request.session['shopping_cart1'] = {}
 
+  params['shopping_cart0'] = request.session['shopping_cart0']
+  params['shopping_cart1'] = request.session['shopping_cart1']
 
-  params['shopping_cart'] = request.session['shopping_cart']
+  request.session.modified = true
 
   return templater.render_to_response(request, 'shoppingcart.html', params)
 
@@ -36,16 +42,26 @@ def add(request):
 
   pid = request.urlparams[0]
   qty = request.urlparams[1]
+  ptype = request.urlparams[2]
 
-  if 'shopping_cart' not in request.session:
-    request.session['shopping_cart'] = {}
+  if 'shopping_cart0' not in request.session:
+      request.session['shopping_cart0'] = {}
+  if 'shopping_cart1' not in request.session:
+      request.session['shopping_cart1'] = {}
 
-  if pid not in request.session['shopping_cart']:
-    request.session['shopping_cart'][ pid ] = int(qty)
+  if ptype == '0':
+    if pid not in request.session['shopping_cart0']:
+      request.session['shopping_cart0'][ pid ] = int(qty)
+    else:
+      request.session['shopping_cart0'][ pid ] += int(qty)
   else:
-    request.session['shopping_cart'][ pid ] += int(qty)
+    if pid not in request.session['shopping_cart1']:
+      request.session['shopping_cart1'][ pid ] = int(qty)
+    else:
+      request.session['shopping_cart1'][ pid ] += int(qty)
+  params['shopping_cart0'] = request.session['shopping_cart0']
+  params['shopping_cart1'] = request.session['shopping_cart1']
 
-  params['shopping_cart'] = request.session['shopping_cart']
   request.session.modified = True
   return templater.render_to_response(request, 'shoppingcart.html', params)
 
@@ -55,100 +71,93 @@ def review(request):
 
   pid = request.urlparams[0]
   qty = request.urlparams[1]
+  ptype = request.urlparams[2]
 
-  params['shopping_cart'] = request.session['shopping_cart']
+  params['shopping_cart0'] = request.session['shopping_cart0']
+  params['shopping_cart1'] = request.session['shopping_cart1']
   request.session.modified = True
   return templater.render_to_response(request, 'shoppingcart.review.html', params)
 
 @view_function
 def remove(request):
   params = {}
-
-  del request.session['shopping_cart'][request.urlparams[0]]
-
-  params['shopping_cart'] = request.session['shopping_cart']
-  request.session.modified = True
-  return templater.render_to_response(request, 'shoppingcart.remove.html', params)
-
-@view_function
-def removeitem(request):
-  params = {}
-
-  del request.session['shopping_cart'][request.urlparams[0]]
-
-  params['shopping_cart'] = request.session['shopping_cart']
+  ptype = request.urlparams[1]
+  print(ptype)
+  if ptype == '0':
+    print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+    del request.session['shopping_cart0'][request.urlparams[0]]
+  elif ptype == '1':
+    del request.session['shopping_cart1'][request.urlparams[0]]
+  
+  params['shopping_cart0'] = request.session['shopping_cart0']
+  params['shopping_cart1'] = request.session['shopping_cart1']
   request.session.modified = True
   return templater.render_to_response(request, 'shoppingcart.html', params)
 
 @view_function
-@login_required(login_url='/homepage/index/')
-def checkout(request):
+def removeitem(request):
   params = {}
+  ptype = request.urlparams[1]
 
-  # try:
-  #   order = hmod.Order.objects.get(id=request.urlparams[0])
-  # except hmod.Order.DoesNotExist:
-  #   return HttpResponseRedirect('/inventory/order/')
-
-  form = CheckoutForm()
-  #   initial={
-  #   'first_name': 
-  #   'last_name': 
-  #   'credit_card': 
-  #   'card_numberar': order.date_paid,
-  # })
-  # if request.method == 'POST':
-  #   form = CheckoutForm(request.POST)
-  #   form.oderid = order.id
-  #   if form.is_valid():
-  #     order.date_paid = form.cleaned_data['date_paid']
-  #     order.date_shipped = form.cleaned_data['date_shipped']
-  #     order.tracking_number = form.cleaned_data['tracking_number']
-  #     order.save()
-  #     return HttpResponseRedirect('/inventory/order/')      
-
-
-  params['form'] = form
-  # params['order'] = order
-
-  pid = request.urlparams[0]
-  qty = request.urlparams[1]
-
-  params['shopping_cart'] = request.session['shopping_cart']
+  if ptype == '0':
+    del request.session['shopping_cart0'][request.urlparams[0]]
+  elif ptype == '1':
+    del request.session['shopping_cart1'][request.urlparams[0]]
+  
+  params['shopping_cart0'] = request.session['shopping_cart0']
+  params['shopping_cart1'] = request.session['shopping_cart1']
   request.session.modified = True
-  return templater.render_to_response(request, 'shoppingcart.checkout.html', params)
+  return templater.render_to_response(request, 'shoppingcart.html', params)
 
-class CheckoutForm(forms.Form):
-  first_name = forms.CharField(label='First Name')
-  last_name = forms.CharField(label='Last Name')
-  address = forms.CharField()
-  city = forms.CharField()
-  state = forms.CharField()
-  zip = forms.CharField()
-  phone = forms.CharField()
-  credit_card = forms.CharField(label='Credit Card')
-  card_number = forms.CharField(label='Card Number')
-  expiration_date = forms.CharField(label='Expiration Date')
+# @view_function
+# @login_required(login_url='/homepage/index/')
+# def checkout(request):
+#   params = {}
 
-  # def clean_tracking_number(self):
-  #   tracking_count = hmod.Order.objects.filter(tracking_number=self.cleaned_data['tracking_number']).exclude(id=self.oderid).count() #self aka (this) calls form.oderid because this section of the area is IN the form
-  #   if tracking_count >= 1:
-  #     raise forms.ValidationError("It seems we already have a oder entered under this tracking number.  Please verify and try again.")
-  #   return self.cleaned_data['tracking_number']
+#   # try:
+#   #   order = hmod.Order.objects.get(id=request.urlparams[0])
+#   # except hmod.Order.DoesNotExist:
+#   #   return HttpResponseRedirect('/inventory/order/')
+
+#   form = CheckoutForm()
+#   #   initial={
+#   #   'first_name': 
+#   #   'last_name': 
+#   #   'credit_card': 
+#   #   'card_numberar': order.date_paid,
+#   # })
+#   # if request.method == 'POST':
+#   #   form = CheckoutForm(request.POST)
+#   #   form.oderid = order.id
+#   #   if form.is_valid():
+#   #     order.date_paid = form.cleaned_data['date_paid']
+#   #     order.date_shipped = form.cleaned_data['date_shipped']
+#   #     order.tracking_number = form.cleaned_data['tracking_number']
+#   #     order.save()
+#   #     return HttpResponseRedirect('/inventory/order/')      
+
+
+#   params['form'] = form
+#   # params['order'] = order
 
 @view_function
 def receipt(request):
   params = {}
 
-  pid = request.urlparams[0]
-  qty = request.urlparams[1]
+  if 'shopping_cart0' not in request.session:
+    request.session['shopping_cart0'] = {}
+  if 'shopping_cart1' not in request.session:
+    request.session['shopping_cart1'] = {}
 
-  params['shopping_cart'] = request.session['shopping_cart']
-  request.session.modified = True
+  if request.user.is_authenticated():
+    user = request.user
+  email = user.email
 
-  #######delete the cart?#######
-  del request.session['shopping_cart']
+  params['shopping_cart0'] = request.session['shopping_cart0']
+  params['shopping_cart1'] = request.session['shopping_cart1']
 
+  emailbody = templater.render(request, 'shoppingcart.receiptemail.html', params)
+  send_mail('Colonial Heritage Receipt', emailbody, 'thecolonialheritage@gmail.com', [email], html_message = emailbody, fail_silently=False)
   return templater.render_to_response(request, 'shoppingcart.receipt.html', params)
 
 @view_function
@@ -163,7 +172,7 @@ def loginform(request):
       login(request, user)
       return HttpResponse('''
         <script>
-          window.location.href = "/inventory/shoppingcart.checkout/"
+          window.location.href = "/inventory/checkout/"
         </script>
         ''')
 
@@ -180,3 +189,4 @@ class LoginForm(forms.Form):
     if user == None:
       raise forms.ValidationError('Something went wrong.  Please try again.')
     return self.cleaned_data
+

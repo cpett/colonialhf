@@ -17,25 +17,25 @@
           <tr>
           <th></th>
           <th>Description</th>
-          <th>Category</th>
-          <th>Current Price</th>
+          <th>Value</th>
+          <th>Rental Price</th>
           <th>Quantity</th>
           <th>Actions</th>
         </tr>
           ##%for product in products:
             <tr>
-              <td><img src="${ STATIC_URL }inventory/media/products/${ product.id }.jpg"/></td>
+              <td><img src="${ STATIC_URL }inventory/media/rentals/${ product.id }.jpg"/></td>
               <td>${ product.description } </td>
-              <td>${ product.category } </td>
-              <td>${ product.current_price } </td>
+              <td>${ product.value } </td>
+              <td>${ product.standard_rental_price } </td>
               <td><input type="number" value="1" min="1" id="item_qty"/></td>
               <td>
                   <div class="row">
-                  <button id="show_shoppingcart_dialog" data-id="${ product.id }" data-qty="1" data-type="0" class="btn btn-warning">Add to Cart</button>
+                  <button id="show_shoppingcart_dialog" data-id="${ product.id }" data-qty="1" data-type="1" class="btn btn-warning">Add to Cart</button>
                   </div>
                   <p>
                   <div class="row">
-                  <a href="/inventory/store/" class="btn btn-primary">Back to Store</a>
+                  <a href="/inventory/rentals/" class="btn btn-primary">Back to Store</a>
                   </div>
               </td>
             </tr>

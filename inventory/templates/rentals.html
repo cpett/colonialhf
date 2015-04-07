@@ -11,7 +11,7 @@
       <h2 class="manage">Colonial Heritage Online Store</h2>
       <input type="text" id="search_input">
       <button id="search_button" class="btn btn-primary">Search</button>
-      <a href="/inventory/rentals/" class="btn btn-warning">Rentals</a>
+      <a href="/inventory/store/" class="btn btn-warning">Products</a>
       <div class="text-right">
       </div>
       <br>
@@ -22,12 +22,12 @@
             <th>Name</th>
             <th/>
           </tr>
-            %for product in products:
+            %for item in items:
               <tr>
-                <td><img src="${ STATIC_URL }inventory/media/products/${ product.id }.jpg"/></td>
-                <td class="product_name">${ product.name }</td>
+                <td><img src="${ STATIC_URL }inventory/media/rentals/${ item.id }.jpg"/></td>
+                <td class="product_name">${ item.name }</td>
                 <td>
-                  <a href="/inventory/store.details/${ product.id }/" class="btn btn-primary">Details</a>
+                  <a href="/inventory/rentals.details/${ item.id }/" class="btn btn-primary">Details</a>
                 </td>
                 <td>
                   

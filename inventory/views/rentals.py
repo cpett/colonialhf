@@ -18,12 +18,12 @@ templater = get_renderer('inventory')
 @view_function
 def process_request(request):
   params = {}
-
-  products = hmod.Product.objects.all()
   
-  params['products'] = products
+  items = hmod.Item.objects.all().order_by('name')
 
-  return templater.render_to_response(request, 'store.html', params)
+  params['items'] = items
+
+  return templater.render_to_response(request, 'rentals.html', params)
 
 ######################################################
 ###  
@@ -32,28 +32,28 @@ def details(request):
   params = {}
 
   try:
-    product = hmod.Product.objects.get(id=request.urlparams[0])
+    product = hmod.Item.objects.get(id=request.urlparams[0])
   except hmod.Product.DoesNotExist:
     return HttpResponseRedirect('/inventory/store/')
 
   form = productEditForm(initial={
     'name': product.name,
     'description': product.description,
-    'category': product.category,
-    'current_price': product.current_price,
+    'value': product.value,
+    'standard_rental_price': product.standard_rental_price,
     #user (owner)
   })
 
   params['form'] = form
   params['product'] = product
 
-  return templater.render_to_response(request, 'store.details.html', params)
+  return templater.render_to_response(request, 'rentals.details.html', params)
 
 class productEditForm(forms.Form):
   name = forms.CharField(label='Name', required=True, max_length=100)
   description = forms.CharField(label='Description', required=True, max_length=100)
-  category = forms.CharField()
-  current_price = forms.CharField(label='Current Price')
+  value = forms.CharField()
+  standard_rental_price = forms.CharField(label='Rental Price')
   #user (owner)
 
   def clean_name(self):

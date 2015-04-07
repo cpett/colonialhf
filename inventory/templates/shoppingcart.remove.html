@@ -19,7 +19,7 @@
             <td>${ product.name }</td>
             <td>${ qty }</td>
             <td>${ product.current_price * qty }</td>
-            <td><button id="btn_remove" data-id="${ item }" class="remove btn btn-danger">X</button></td>
+            <td><button id="btn_remove" data-id="${ item }" data-type="0" class="remove btn btn-danger">X</button></td>
         </tr>
           <% total_price += product.current_price * qty %>
       %endfor

@@ -1,0 +1,38 @@
+<%inherit file="/homepage/templates/base.htm" />
+<%! import homepage.models as hmod %>
+
+<%block name="content">
+    <div class="content col-md-6">
+    <h2>Billing Information</h2>
+    <form method = "POST">
+    <table class="table table-striped table-bordered"
+    <tr>
+    ${ form }
+    </tr>
+      <% total_price = 0 %>
+      %if shopping_cart0:
+        %for item in shopping_cart0:
+          <% qty = shopping_cart0.get(item) %>
+          <% product = hmod.Product.objects.get(id=item) %>
+          <% total_price += product.current_price * qty %>
+        %endfor
+      %endif
+      %if shopping_cart1:
+        %for item in shopping_cart1:
+          <% qty = shopping_cart1.get(item) %>
+          <% product = hmod.Item.objects.get(id=item) %>
+          <% total_price += product.standard_rental_price * qty %>
+        %endfor
+      %endif
+      </table>
+      <div class="row">
+        <div class="col-md-9">
+          <h3>Total Price: ${ total_price }</h3>
+        </div>
+        </form>
+        <div class="col-md-3">
+          <button type="submit" id="check_out" class="btn btn-warning pull-right">Check Out</button>
+        </div>
+      </div>
+    </div>
+</%block>

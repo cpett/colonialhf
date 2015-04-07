@@ -80,19 +80,33 @@ for data in [
 	u.save()
 
 #Wardrobe
+# for data in [
+# 	["Storm Tooper Helmet", "L", "Big", "M", "White", "None"],
+# 	["Breeches", "XL", "Gove", "M", "Brown", "Plain"],
+# 	["Jedi Cloak", "XXXL", "Jedi", "M", "Black", "None"]
+# ]:
+# 	w = hmod.WardrobeItem()
+# 	w.name = data[0]
+# 	w.size = data[1]
+# 	w.size_modifier = data[2]
+# 	w.gender = data[3]
+# 	w.color = data[4]
+# 	w.pattern = data[5]
+# 	w.save()
+
+#Item
 for data in [
-	["Storm Tooper Helmet", "L", "Big", "M", "White", "None"],
-	["Breeches", "XL", "Gove", "M", "Brown", "Plain"],
-	["Jedi Cloak", "XXXL", "Jedi", "M", "Black", "None"]
+	["Storm Tooper Helmet", "Helmet for gents", "25.00", "10.00"],
+	["Breeches", "Breeches for gents", "20.00", "15.00"],
+	["Jedi Cloak", "Cloak for gents", "50.00", "20.00"]
 ]:
-	w = hmod.WardrobeItem()
+	w = hmod.Item()
 	w.name = data[0]
-	w.size = data[1]
-	w.size_modifier = data[2]
-	w.gender = data[3]
-	w.color = data[4]
-	w.pattern = data[5]
+	w.description = data[1]
+	w.value = data[2]
+	w.standard_rental_price = data[3]
 	w.save()
+
 
 #Events
 for data in [
