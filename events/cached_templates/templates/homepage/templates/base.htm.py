@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1425778309.467741
+_modified_time = 1428092075.589409
 _enable_loop = True
 _template_filename = 'C:\\Python34\\Lib\\site-packages\\django\\bin\\colonialHF/homepage/templates/base.htm'
 _template_uri = '/homepage/templates/base.htm'
 _source_encoding = 'ascii'
 import os, os.path, re
-_exports = ['top', 'left', 'login', 'content']
+_exports = ['left', 'top', 'login', 'content']
 
 
 from django_mako_plus.controller import static_files 
@@ -19,17 +19,17 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def top():
-            return render_top(context._locals(__M_locals))
         def content():
             return render_content(context._locals(__M_locals))
+        self = context.get('self', UNDEFINED)
         request = context.get('request', UNDEFINED)
-        def login():
-            return render_login(context._locals(__M_locals))
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         def left():
             return render_left(context._locals(__M_locals))
-        self = context.get('self', UNDEFINED)
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        def top():
+            return render_top(context._locals(__M_locals))
+        def login():
+            return render_login(context._locals(__M_locals))
         __M_writer = context.writer()
         __M_writer('\r\n')
         __M_writer('\r\n')
@@ -37,7 +37,7 @@ def render_body(context,**pageargs):
         
         __M_locals_builtin_stored = __M_locals_builtin()
         __M_locals.update(__M_dict_builtin([(__M_key, __M_locals_builtin_stored[__M_key]) for __M_key in ['static_renderer'] if __M_key in __M_locals_builtin_stored]))
-        __M_writer('\r\n\r\n<!DOCTYPE html>\r\n<html>\r\n  <meta charset="UTF-8">\r\n  <head>\r\n    \r\n    <title>Colonial Heritage Foundation</title>\r\n    \r\n')
+        __M_writer('\r\n\r\n<!DOCTYPE html>\r\n<html>\r\n  <meta charset="UTF-8">\r\n  <head>\r\n    <meta name="description" content="The Colonial Heritage Foundation loves America.">\r\n    <meta name="keywords" content="colonial, heritage, liberty, America, fourth of july">\r\n    <title>Colonial Heritage Foundation</title>\r\n    \r\n')
         __M_writer('    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>\r\n    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>\r\n    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">\r\n    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">\r\n    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>\r\n    <script src="')
         __M_writer(str(STATIC_URL))
         __M_writer('users/scripts/script.js/"></script>\r\n    <script src="')
@@ -68,7 +68,7 @@ def render_body(context,**pageargs):
             context['self'].login(**pageargs)
         
 
-        __M_writer('\r\n      \r\n      <nav class="navbar navbar-default">\r\n          <div class="container-fluid">\r\n            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\r\n              <ul class="nav navbar-nav">\r\n                <li><a href="/homepage/index/" class="top-nav">Home</a></li>\r\n                <li><a href="/inventory/store/" class="top-nav">Store</a></li>\r\n                <li><a href="#">Gallery</a></li>\r\n                <li><a href="#">Products</a></li>\r\n                <li><a href="#">Products</a></li>\r\n              </ul>\r\n              <ul class="nav navbar-nav navbar-right">\r\n                </li>\r\n                <form class="navbar-form navbar-right" role="search">\r\n                  <div class="form-group">\r\n                    <input type="text" class="form-control" placeholder="Search">\r\n                  </div>\r\n                  <button type="submit" class="btn btn-default">Submit</button>\r\n                </form>\r\n              </ul>\r\n            </div>\r\n          </div>\r\n        </nav>\r\n  \r\n    <div class="wrapper">\r\n\r\n      <div class="row">\r\n\r\n      <div class="col-sm-2">\r\n        ')
+        __M_writer('\r\n      \r\n      <nav class="navbar navbar-default">\r\n          <div class="container-fluid">\r\n            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\r\n              <ul class="nav navbar-nav">\r\n                <li><a href="/homepage/index/" >Home</a></li>\r\n                <li><a href="/inventory/store/">Store</a></li>\r\n                <li><a href="/events/event.view/">Events</a></li>\r\n                <li><a href="/inventory/return/">Returns</a></li>\r\n                <li><a href="#">Products</a></li>\r\n              </ul>\r\n              <ul class="nav navbar-nav navbar-right">\r\n                </li>\r\n                <form class="navbar-form navbar-right" role="search">\r\n                  <div class="form-group">\r\n                    <input type="text" class="form-control" placeholder="Search">\r\n                  </div>\r\n                  <button type="submit" class="btn btn-default">Submit</button>\r\n                </form>\r\n              </ul>\r\n            </div>\r\n          </div>\r\n        </nav>\r\n  \r\n    <div class="wrapper">\r\n\r\n      <div class="row">\r\n\r\n      <div class="col-sm-2">\r\n        ')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'left'):
             context['self'].left(**pageargs)
         
@@ -89,18 +89,6 @@ def render_body(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
-def render_top(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def top():
-            return render_top(context)
-        __M_writer = context.writer()
-        __M_writer('\r\n      <div class="row top-header">\r\n        <!--\r\n          <div class="col-md-10 top-header"></div>\r\n          <div class="col-md-1 top-header"><a href="/inventory/store/" class="top-nav">Store</a></div>\r\n          <div class="col-md-1 top-header"><a href="/homepage/index/" class="top-nav">Home</a></div>\r\n        -->\r\n      </div>\r\n    ')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
 def render_left(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
@@ -114,6 +102,18 @@ def render_left(context,**pageargs):
         else:
             pass
         __M_writer('          </div>\r\n        ')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_top(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def top():
+            return render_top(context)
+        __M_writer = context.writer()
+        __M_writer('\r\n      <div class="row top-header">\r\n        <!--\r\n          <div class="col-md-10 top-header"></div>\r\n          <div class="col-md-1 top-header"><a href="/inventory/store/" class="top-nav">Store</a></div>\r\n          <div class="col-md-1 top-header"><a href="/homepage/index/" class="top-nav">Home</a></div>\r\n        -->\r\n      </div>\r\n    ')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -145,6 +145,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"uri": "/homepage/templates/base.htm", "filename": "C:\\Python34\\Lib\\site-packages\\django\\bin\\colonialHF/homepage/templates/base.htm", "line_map": {"128": 57, "134": 130, "140": 130, "16": 4, "18": 0, "34": 2, "35": 4, "36": 5, "40": 5, "41": 15, "42": 20, "43": 20, "44": 21, "45": 21, "46": 22, "47": 22, "48": 23, "49": 23, "50": 26, "51": 26, "52": 26, "53": 32, "54": 32, "55": 35, "56": 36, "57": 36, "58": 36, "59": 39, "60": 40, "61": 43, "66": 55, "71": 80, "76": 126, "81": 132, "82": 148, "83": 148, "84": 190, "85": 190, "86": 190, "92": 47, "98": 47, "104": 110, "146": 140, "111": 110, "112": 112, "113": 113, "114": 123, "116": 125, "122": 57}, "source_encoding": "ascii"}
+{"line_map": {"128": 58, "134": 131, "140": 131, "16": 4, "18": 0, "34": 2, "35": 4, "36": 5, "40": 5, "41": 16, "42": 21, "43": 21, "44": 22, "45": 22, "46": 23, "47": 23, "48": 24, "49": 24, "50": 27, "51": 27, "52": 27, "53": 33, "54": 33, "55": 36, "56": 37, "57": 37, "58": 37, "59": 40, "60": 41, "61": 44, "66": 56, "71": 81, "76": 127, "81": 133, "82": 149, "83": 149, "84": 191, "85": 191, "86": 191, "92": 111, "99": 111, "100": 113, "101": 114, "102": 124, "104": 126, "146": 140, "110": 48, "116": 48, "122": 58}, "filename": "C:\\Python34\\Lib\\site-packages\\django\\bin\\colonialHF/homepage/templates/base.htm", "source_encoding": "ascii", "uri": "/homepage/templates/base.htm"}
 __M_END_METADATA
 """
