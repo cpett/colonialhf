@@ -10,6 +10,7 @@ from homepage.State import State
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.models import Group, Permission, ContentType
 from django.contrib.auth import authenticate, login
+from ldap3 import Server, Connection, AUTH_SIMPLE, STRATEGY_SYNC, GET_ALL_INFO
 
 @view_function
 def process_request(request):
@@ -35,6 +36,12 @@ def loginform(request):
   if request.method == 'POST':
     form = LoginForm(request.POST)
     if form.is_valid():
+      s = Server('www.thecolonialheritage.com', port=8889, get_info=GET_ALL_INFO)
+      print('connected')
+      c = Connection(s, auto_bind=True, client_strategy=STRATEGY_SYNC, user='cody@thecolonialheritage.local', password='Password1', authentication=AUTH_SIMPLE)
+      print("connection established")
+      print("end of method reached")
+
       user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
       login(request, user)
       return HttpResponse('''
