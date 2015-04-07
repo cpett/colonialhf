@@ -80,22 +80,15 @@ class WardrobeItem(Item):
 class RentableItem(Item):
 	pass
 
-class Rental(models.Model):
-	rental_time = models.DateField(null=True, blank=True)
-	due_date = models.DateField(null=True, blank=True)
-	discount_percent = models.IntegerField(max_length=15, null=True, blank=True)
-	organization = models.ForeignKey(Organization, null=True, blank=True)
-	pass
-
 class Agent(Person):
 	appointment_date = models.DateField(null=True, blank=True)
 	pass
 
-class Return(models.Model):
-	return_time = models.DateField(null=True, blank=True)
-	fees_paid = models.DecimalField(max_digits=10, decimal_places=2)
-	pass
-	agent = models.ForeignKey(Agent, null=True, blank=True)
+# class Return(models.Model):
+# 	return_time = models.DateField(null=True, blank=True)
+# 	fees_paid = models.DecimalField(max_digits=10, decimal_places=2)
+# 	pass
+# 	agent = models.ForeignKey(Agent, null=True, blank=True)
 
 class RentedItem(models.Model):
 	condition = models.TextField(max_length=30, null=True, blank=True)
@@ -103,8 +96,21 @@ class RentedItem(models.Model):
 	damage_fee = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 	late_fee = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 	rentable_item = models.ForeignKey(RentableItem, null=True, blank=True)
-	rental = models.ForeignKey(Rental, null=True, blank=True)
-	returns = models.ForeignKey(Return, null=True, blank=True)
+	# rental = models.ForeignKey(Rental, null=True, blank=True)
+	# returns = models.ForeignKey(Return, null=True, blank=True)
+	return_time = models.DateField(null=True, blank=True)
+	fees_paid = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+	pass
+	agent = models.ForeignKey(Agent, null=True, blank=True)
+
+class Rental(RentedItem):
+	rental_time = models.DateField(null=True, blank=True)
+	due_date = models.DateField(null=True, blank=True)
+	discount_percent = models.IntegerField(max_length=15, null=True, blank=True)
+	# organization = models.ForeignKey(Organization, null=True, blank=True)
+	userid = models.ForeignKey(User, null=True, blank=True)
+	itemid = models.ForeignKey(Item, null=True, blank=True)
+	pass
 
 class Participant(Person):
 	biographical_sketch = models.TextField(max_length = 30, null=True, blank=True)

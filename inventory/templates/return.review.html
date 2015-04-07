@@ -1,0 +1,47 @@
+<%inherit file="/homepage/templates/base.htm" />
+
+<%block name="header">
+    <div class="header">
+
+    </div>
+</%block>
+
+<%block name="content">
+    <div class="content">
+      <h2 class="manage">Returned Items</h2>
+      <br>
+      <table id="users_table" class="table table-striped table-bordered">
+          <tr>
+          <th>ID</th>
+          <th>User</th>
+          <th>Item</th>
+          <th>Rented</th>
+          <th>Due</th>
+          <th>Returned</th>
+          <th>Condition</th>
+          <th>Damage Fee</th>
+          <th>Late Fee</th>
+          <th>Total Fees</th>
+        </tr>
+          %for item in rental:
+            <tr>
+              <td>${ item.id }</td>
+              <td>${ item.userid }</td>
+              <td>${ item.itemid.name }</td>
+              <td>${ item.rental_time }</td>
+              <td>${ item.due_date }</td>
+              <td>${ item.return_time }</td>
+              <td>${ item.condition }</td>
+              <td>${ item.damage_fee }</td>
+              <td>${ item.late_fee }</td>
+              <td>${ item.fees_paid }</td>
+            </tr>
+          %endfor
+      </table>
+
+</%block>
+
+<%block name="footer">
+    <div class="footer">
+    </div>
+</%block>

@@ -1,0 +1,47 @@
+<%inherit file="/homepage/templates/base.htm" />
+
+<%block name="header">
+    <div class="header">
+
+    </div>
+</%block>
+
+
+
+<%block name="content">
+    <div class="content">
+      <h2 class="manage">Rented Items</h2>
+      <br>
+      <div class="text-right">
+      <a href="/inventory/overdue/"class="btn btn-primary">Overdue Rentals</a>
+      </div>
+      <br/>
+      <table id="users_table" class="table table-striped table-bordered">
+          <tr>
+          <th>Username</th>
+          <th>Item</th>
+          <th>Rental Time</th>
+          <th>Due Date</th>
+          <th>Renturn Time</th>
+          <th>Actions</th>
+        </tr>
+          %for item in returns: 
+            <tr>
+              <td>${ item.userid.username } </td>
+              <td>${ item.itemid.name } </td>
+              <td>${ item.rental_time } </td>
+              <td>${ item.due_date } </td>
+              <td>${ item.return_time } </td>
+              <td>
+                <a href="/inventory/return.details/${ item.id }" class="btn btn-success">Process</a>
+              </td>
+            </tr>
+          %endfor
+      </table>
+
+</%block>
+
+<%block name="footer">
+    <div class="footer">
+    </div>
+</%block>
