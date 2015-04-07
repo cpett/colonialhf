@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<%! import homepage.models as hmod %>
+<html>
+<head>
+	<title>Email</title>
+</head>
+<body>
+
+<p>Dear ${ request.user.get_full_name() },</p>
+
+<p>Thank you for your purchase.</p>
+
+<table>
+<tr>
+<td>Date: 3/21/2015</td>
+</tr>
+<tr>
+<td>Name: ${ request.user.get_full_name() }</td>
+</tr>
+<% total_price = 0 %>
+%if shopping_cart0:
+<h2>Products</h2>
+<table>
+	<tr>
+		<th>Item</th>
+		<th>Quantity</th>
+		<th>Price</th>
+	</tr>
+	%for item in shopping_cart0:
+	  <% qty = shopping_cart0.get(item) %>
+	  <% product = hmod.Product.objects.get(id=item) %>
+	  <tr>
+	      <td>${ product.name }</td>
+	      <td>${ qty }</td>
+	      <td>${ product.current_price * qty }</td>
+	  </tr>
+	  <% total_price += product.current_price * qty %>
+	%endfor
+
+</table>
+%endif
+
+
+%if shopping_cart1:
+<h2>Rentals</h2>
+<table>
+	<tr>
+		<th>Item</th>
+		<th>Quantity</th>
+		<th>Price</th>
+	</tr>
+	<tr>
+		%for item in shopping_cart1:
+        <% qty = shopping_cart1.get(item) %>
+        <% product = hmod.Item.objects.get(id=item) %>
+        <tr>
+            <td>${ product.name }</td>
+            <td>${ qty }</td>
+            <td>${ product.standard_rental_price * qty }</td>
+        </tr>
+          <% total_price += product.standard_rental_price * qty %> 
+    %endfor
+	</tr>	
+</table>
+%endif
+<h3>Total Price: ${ total_price }</h3>
+</body>
+</html>
