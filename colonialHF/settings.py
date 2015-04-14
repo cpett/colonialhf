@@ -73,9 +73,9 @@ EMAIL_PORT = 587
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dbTest',
+        'NAME': 'CHF',
         'USER': 'postgres',
-        'PASSWORD': 'dulceata22',
+        'PASSWORD': '#ProjectUno',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
@@ -126,7 +126,7 @@ LOGGING = {
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
  # SECURITY WARNING: this next line must be commented out at deployment
- BASE_DIR,  
+ #BASE_DIR,  
 )
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 

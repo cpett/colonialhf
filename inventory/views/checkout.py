@@ -94,12 +94,12 @@ class CheckoutForm(forms.Form):
       'apiKey': API_KEY,
       'currency': 'usd',
       'amount': self.cleaned_data['total_cost'],
-      'type': self.cleaned_data['card_type'],
-      'number': self.cleaned_data['card_number'],
-      'exp_month': self.cleaned_data['exp_month'],
-      'exp_year': self.cleaned_data['exp_year'],
-      'cvc': self.cleaned_data['cvc'],
-      'name': name,
+      'type': 'visa',
+      'number': '4732817300654',
+      'exp_month': '10',
+      'exp_year': '15',
+      'cvc': '411',
+      'name': 'Cosmo Limesandal',
       'description': 'Charge for CHF',
       })
 

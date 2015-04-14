@@ -28,22 +28,7 @@
   
   </head>
   <body>
-  
-    <header>
-      <img src="${ STATIC_URL }homepage/media/header.jpg" width="100%">
-
-      <div class="pull-right row container-fluid">
-        %if request.user.is_authenticated():
-          Welcome, ${ request.user.get_full_name() }
-          <a href="/users/account/" class="btn btn-success">My Account</a>
-          <a href="/homepage/logout/" class="btn btn-danger">Log Out</a>
-        %else:
-          <button id="show_login_dialog" class="btn btn-success">Login</button>
-          <a href="/users/signup.create" class="btn btn-primary">Sign Up</a>
-        %endif
-      </div>
-
-    </header> 
+   
 
     <%block name="top">
       <div class="row top-header">
@@ -82,22 +67,27 @@
       
       <nav class="navbar navbar-default">
           <div class="container-fluid">
+            <img src="${ STATIC_URL }homepage/media/header.jpg" width="100%" height="175px">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li><a href="/homepage/index/" >Home</a></li>
-                <li><a href="/inventory/store/">Store</a></li>
-                <li><a href="/events/event.view/">Events</a></li>
-                <li><a href="/inventory/return/">Returns</a></li>
-                <li><a href="#">Products</a></li>
+                <li><a href="/homepage/index/"  class="homenav">Home</a></li>
+                <li><a href="/inventory/store/" class="homenav">Store</a></li>
+                <li><a href="/events/event.view/" class="homenav">Events</a></li>
+                <li><a href="/inventory/return/" class="homenav">Returns</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
-                </li>
-                <form class="navbar-form navbar-right" role="search">
-                  <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                  </div>
-                  <button type="submit" class="btn btn-default">Submit</button>
-                </form>
+
+                    <div class="pull-right row container-fluid" id="navbutton">
+                      %if request.user.is_authenticated():
+                        Welcome, ${ request.user.get_full_name() }
+                        <a href="/users/account/" class="btn btn-success" id="accountstuff">My Account</a>
+                        <a href="/homepage/logout/" class="btn btn-danger" id="accountstuff">Log Out</a>
+                      %else:
+                        <button id="show_login_dialog" class="btn btn-success">Login</button>
+                        <a href="/users/signup.create" class="btn btn-primary">Sign Up</a>
+                      %endif
+                    </div>
+
               </ul>
             </div>
           </div>
@@ -146,8 +136,8 @@
           <div class="col-md-1"></div>
           <div class="col-md-3">
             <ul>
-              <li style="margin-top:5px; margin-left:-50px;"><img src="${ STATIC_URL }homepage/media/chflogo.png"></li>
-              <li>&copy;2015 Colonial Heritage, Inc. All rights reserved.</li>
+              <li style="margin-top:5px; margin-left:-125px;"><img src="${ STATIC_URL }homepage/media/chflogo.png"></li>
+              <li style="margin-left:-90px;">&copy;2015 Colonial Heritage, Inc. All rights reserved.</li>
             </ul>
           </div>
           <div class="col-md-2">

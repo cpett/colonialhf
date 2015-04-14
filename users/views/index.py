@@ -33,22 +33,33 @@ def loginform(request):
   template_vars = {}
 
   form = LoginForm()
+  template_vars['form'] = form
   if request.method == 'POST':
     form = LoginForm(request.POST)
     if form.is_valid():
-      s = Server('www.thecolonialheritage.com', port=8889, get_info=GET_ALL_INFO)
-      print('connected')
-      c = Connection(s, auto_bind=True, client_strategy=STRATEGY_SYNC, user='cody@thecolonialheritage.local', password='Password1', authentication=AUTH_SIMPLE)
-      print("connection established")
-      print("end of method reached")
+      username = form.cleaned_data['username']
+      password = form.cleaned_data['password']
+      try:
+        s = Server('www.thecolonialheritage.com', port=8889, get_info=GET_ALL_INFO)
+        c = Connection(s, auto_bind=True, client_strategy=STRATEGY_SYNC, user=username, password=password, authentication=AUTH_SIMPLE)
 
-      user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
-      login(request, user)
-      return HttpResponse('''
-        <script>
-          window.location.href = window.location.href;
-        </script>
-        ''')
+        if c:
+          hmod.User.objects.get_or_create(username="Jordan")
+          u = hmod.User.objects.get(username="Jordan")
+          u.first_name = "Jordan"
+          u.last_name = "Rader"
+          u.set_password(password)
+          u.save()
+          u2 = authenticate(username="Jordan",password=password)
+          login(request, u2)
+          return HttpResponse('''<script>window.location.href = "/users/account/";</script>''')
+      except:
+        user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
+        if user == None:
+          raise forms.ValidationError('Something went wrong.  Please try again.')
+
+        login(request, user)
+        return HttpResponse('''<script>window.location.href = "/users/account/";</script>''')
 
   template_vars['form'] = form
 
@@ -59,7 +70,18 @@ class LoginForm(forms.Form):
   password = forms.CharField(label='Password', widget=forms.PasswordInput)
 
   def clean(self):
-    user = authenticate(username=self.cleaned_data['username'], password=self.cleaned_data['password'])
-    if user == None:
-      raise forms.ValidationError('Something went wrong.  Please try again.')
+
+    username = self.cleaned_data['username']
+    password = self.cleaned_data['password']
+    try:
+      s = Server('www.thecolonialheritage.com', port=8889, get_info=GET_ALL_INFO)
+      c = Connection(s, auto_bind=True, client_strategy=STRATEGY_SYNC, user=username, password=password, authentication=AUTH_SIMPLE)
+
+      if c:
+        return self.cleaned_data
+    except:
+      user = authenticate(username=self.cleaned_data['username'], password=self.cleaned_data['password'])
+      if user == None:
+        raise forms.ValidationError('Something went wrong.  Please try again.')
+     
     return self.cleaned_data

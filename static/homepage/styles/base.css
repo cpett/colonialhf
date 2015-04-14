@@ -1,0 +1,231 @@
+
+#accountstuff{
+  margin-top:-25px;
+}
+#navbutton {
+  margin-top: 7%;
+}
+.pull-right {
+  color: black; 
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+header {
+  text-align: center;
+  font-size: 2.5em;
+  color: #F4F4F4;
+  background-color:;
+  height:25%;
+}
+.logo{
+  z-index: 10;
+}
+.background{
+  z-index: 1;
+  margin-top: -150px;
+}
+.top-header{
+  background-color:;
+}
+.top-nav{
+  background-color:;
+  font-size:1.25em; 
+  font-weight:bold;  
+  color: #FFF; 
+  text-shadow: 1px 1px 8px black;
+}
+.top-nav:hover{
+  text-decoration: none;
+}
+.signup{
+  margin-top: -75px;
+}
+.editform{
+  width:50%;
+}
+.input-group{
+  margin-top: 100px;
+  margin-left:225px; 
+  padding:10px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  border-color:black; 
+  border-width:3px; 
+  border-style:solid; 
+  border-radius:5px
+}
+
+.loginbutton{
+  margin-top: 50px;
+  margin-left: 175px;
+  padding:10px;
+  padding-right:20px;
+  padding-left:20px;
+  margin-bottom: 20px;
+  background-color: #0088CC;
+  color:#fff;
+}
+.createevent{
+  margin-top: 40px;
+  margin-bottom: 20px;
+  width:50%;
+  height: ;
+  font-size: 1.25em;
+  padding:15px;
+}
+.createeventbutton{
+  margin-top: 50px;
+  margin-left: ;
+  padding:10px;
+  padding-right:20px;
+  padding-left:20px;
+  margin-bottom: 20px;
+  background-color: #0088CC;
+  color:#fff;
+}
+
+.loginform{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-right: -150px;
+  font-size: 1.25em;
+  padding:15px;
+}
+.signupform{
+  margin-top: 40px;
+  margin-bottom: 20px;
+  margin-right: -200px;
+  font-size: 1.25em;
+  padding:15px;
+}
+
+
+.form-title{
+  margin-left: 175px;
+  margin-bottom: ;
+}
+
+.active{
+  background-color:#0088CC;
+  border-radius: 1px;
+  border-width: 2px;
+  border-color: black;
+  border-style: solid;
+}
+.formnum{
+  color:black;
+}
+.formnum:hover{
+  text-decoration: none;
+}
+.left-menu{
+  
+  height:660px;
+}
+.manage{
+  margin-top: -20px;
+  padding-top: 20px;
+  padding-bottom: 15px;
+  margin-bottom:15px;
+}
+.managenav{
+  padding-left: 65px;
+  margin-left: -30px;
+}
+.menu-nav{
+  list-style: none;
+  margin-top: 15px;
+  font-size: 1.25em;
+}
+.delete{
+  color:red;
+}
+.delete:hover{
+  text-decoration: none;
+}
+.edit:hover{
+  text-decoration: none;
+}
+.details{
+  color:gray;
+}
+.details:hover{
+  text-decoration: none;
+}
+.tile{
+  padding:100px;
+}
+.bottom-buffer{
+  margin-bottom: 25px;
+}
+.right{
+  margin-bottom: 15px;
+  float: right;
+  margin-right: 25px;
+}
+footer {
+  padding:5px;
+  font-size: 1em;
+  color: #F4F4F4;
+  background-color: #0088CC;
+  text-align: center;
+}
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -4em;
+}
+
+.footer, .push {
+  height: 2em;
+}
+
+.left_side_bar {
+  margin-left: 20px;
+  color: #0088CC; 
+  text-align: left;
+}
+
+.navtab{
+  font-size: 1.5em;
+  text-align: center;
+  background-color: ;
+}
+
+footer{
+  background-color: #e9cf84;
+}
+
+.footer{
+  background-color: #e9cf84;
+  color: #5a5a5a;
+}
+
+.footer ul{
+  background-color: #e9cf84;
+  list-style: none;
+}
+.footer a{
+  background-color: #e9cf84;
+  color: #5a5a5a;
+}
+
+.workaround{
+  color:#e9cf84;
+}
+
+.footer-title{
+  font-size:1.25em; 
+  font-weight:bold; 
+  margin-top:10px; 
+  color: #FFF; 
+  text-shadow: 1px 1px 8px black;
+}

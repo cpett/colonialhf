@@ -50,10 +50,11 @@ subprocess.call([sys.executable, "manage.py", "migrate"])
 hmod.User.objects.all().delete()
 
 for data in [
-	["Master", "Yoda", "password", "myoda", True, "yoda@theforce.com"],
-	["Clark", "Kent", "hope", "BatmanSucks", False, "lasereyes@aol.com"],
-	["Bruce", "Wayne", "bats", "LadyKiller", False , "bruce@wayne.com"],
-	["Johnny", "Karate", "lasers", "BertMacklin", False, "brokenfist@me.com" ]
+	["Cody", "Pettit", "password", "cpettit", False, "cpett26@gmail.com"],
+	["Jordan", "Rader", "password", "jrader", False, "jdavisrader@gmail.com"],
+	["Josh", "Haws", "password", "jhaws", True , "joshhaws0@gmail.com"],
+	["Tanner", "Sawyer", "password", "tsawyer", False, "tanner.sawyer@gmail.com" ],
+	["Conan", "Albrecht", "password", "calbrecht", False, "conan.albrecht@test.com" ]
 ]:
 	u = hmod.User()
 	u.first_name = data[0]
@@ -66,9 +67,9 @@ for data in [
 
 # Venue
 for data in [
-	["Scera", "State Street", "Orem", "UT", 12345],
-	["Bates Motel", "Psycho St", "Lonely Grove", "CA", 66666],
-	["Jedi Temple", "Corrisant", "Corrisant", "Corrisant", 12345]
+	["Scera Park", "600 S. State Street", "Orem", "UT", 84058],
+	["President's Park", "1600 Pennsylvania Ave SW", "Washington", "DC", 20500],
+	["Lexington and Concord", "Middlesex County", "Lexington/Concord", "Massachusetts", 51431]
 ]:
 	u = hmod.Venue()
 	u.name = data[0]
@@ -96,9 +97,10 @@ for data in [
 
 #Item
 for data in [
-	["Storm Tooper Helmet", "Helmet for gents", "25.00", "10.00"],
-	["Breeches", "Breeches for gents", "20.00", "15.00"],
-	["Jedi Cloak", "Cloak for gents", "50.00", "20.00"]
+	["Musket", "Replica colonial era musket (not actual gun)", "25.00", "10.00"],
+	["Breeches", "Colonial era breeches for gentlemen", "20.00", "15.00"],
+	["Waistcoat", "Typical colonial wear for gentleman", "50.00", "20.00"],
+	["Brunswick", "A three-quarter length jacket worn with a petticoat", "30.00", "15.00"]
 ]:
 	w = hmod.Item()
 	w.name = data[0]
@@ -110,9 +112,9 @@ for data in [
 
 #Events
 for data in [
-	['2014-05-05', '2014-06-06', "Mapzoid", "Jedi Trials"],
-	['2014-05-05', '2014-06-06', "Treasure Map", "Summer Solstice"],
-	['2014-05-05', '2014-06-06', "Cool Map", "Grand Event"]
+	['2015-05-05', '2015-05-08', "Mapzoid", "Colonial Heritage Festival"],
+	['2015-06-05', '2015-06-08', "Treasure Map", "Summer Solstice Festival"],
+	['2015-07-05', '2014-07-08', "Cool Map", "War Commencement Festival"]
 ]:
 	e = hmod.Event()
 	e.name = data[3]
@@ -122,11 +124,11 @@ for data in [
 	e.save()
 
 for data in[
-	["Bonnet","Female head cover thingie","Clothing", 7.99],
-	["Cloak","Body cover thingie","Clothing", 22.89],
-	["Flag","Decoration thingie","Decoration", 50.43],
-	["Hat","Male head cover thingie","Clothing", 15.89],
-	["Sword","Sharp thingie","Weapons", 35.69]
+	["Cap","A practical piece that allowed the head to be dressed without styling the hair","Clothing", 7.99],
+	["Cloak","A long, loose, unfitted, protective outer garment that was usually made from thick wool","Clothing", 22.89],
+	["Flag","Colonial Era Flag","Decoration", 50.43],
+	["Hat","Typical style of hat worn by men from the colonial era","Clothing", 15.89],
+	["Sword","A sword indicated rank and stature in battles. Usually a mounted officer directed his men with the sword.","Weapons", 35.69]
 ]:
 	pr = hmod.Product()
 	pr.name = data[0]
